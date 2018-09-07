@@ -11,6 +11,7 @@ class MyHeader extends Component {
             searchHeight: 0,
             showSearchClear: false
         };
+        this.searchHandler = debounce(this.searchHandler, 300)
     }
 
     toggleSearchBar = () => {
@@ -38,10 +39,13 @@ class MyHeader extends Component {
     animationEnds = () => {
         if (this.state.searchHeight === 'auto') this.searchInput.focus();
     };
-    
 
-    searchChangeHandler = event => {
-        let searchTerm = event.target.value;
+    onChangeHandler = event => {
+        const searchTerm = event.target.value.toLowerCase();
+        this.searchHandler(searchTerm);
+    };
+
+    searchHandler = searchTerm => {
         if (searchTerm.length > 3) {
             this.props.fetchAndRender({
                 api: '/search/movie',
@@ -108,7 +112,7 @@ class MyHeader extends Component {
                             }}
                             placeholder="Search..."
                             className="search-input"
-                            onChange={this.searchChangeHandler}
+                            onChange={this.onChangeHandler}
                         />
                         <div className={this.state.showSearchClear ? '' : 'd-none'}>
                             <button className="header-btn clear-search-btn" onClick={this.clearSearch}>
@@ -121,5 +125,20 @@ class MyHeader extends Component {
         )
     }
 }
+
+const debounce = (callback, delay) => {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            timeout = null;
+            callback.apply(context, args);
+        }, delay);
+    }
+};
 
 export default MyHeader
