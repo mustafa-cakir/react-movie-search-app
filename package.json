@@ -10,7 +10,6 @@
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
-    "react-spring": "^5.6.14",
     "react-text-truncate": "^0.13.1"
   },
   "scripts": {
