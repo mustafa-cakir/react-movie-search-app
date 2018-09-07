@@ -1,0 +1,19 @@
+body {
+	position: relative;
+	overflow: hidden;
+}
+.sidebar-open {
+	left: 100px;
+	margin-left: 300px;
+}
+.sideBar {
+	position: fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width: 50%;
+	z-index: 10;
+	background: #000;
+	margin-left: -50%;
+}
+
