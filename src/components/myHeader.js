@@ -11,6 +11,9 @@ class MyHeader extends Component {
             searchHeight: 0,
             showSearchClear: false
         };
+    }
+    
+    componentDidMount() {
         this.searchHandler = debounce(this.searchHandler, 300)
     }
 
