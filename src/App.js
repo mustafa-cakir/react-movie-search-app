@@ -39,10 +39,12 @@ class App extends Component {
             } else {
                 content.push(<div className="fetch-alert nothing" key={1}>Nothing found...</div>)
             }
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            if (options.scrollToTop) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
         }).fail((xhr) => {
             content.push(<div className="fetch-alert error" key={1}><strong>Error!</strong> Something seriously gone
                 wrong :( <p><br/><code><strong>{xhr.status || ""}</strong><br/>{xhr.responseText}</code></p></div>);

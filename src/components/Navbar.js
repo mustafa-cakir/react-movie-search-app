@@ -27,7 +27,8 @@ class Navbar extends Component {
         if (this.searchInput.value.length > 3) {
             this.props.fetchAndRender({
                 api: '/trending/movie/week',
-                data: null
+                data: null,
+                scrollToTop: true
             });
         }
         this.searchInput.value = '';
@@ -45,7 +46,8 @@ class Navbar extends Component {
                 api: '/search/movie',
                 data: {
                     query: searchTerm
-                }
+                },
+                scrollToTop: true;
             });
         }
     };
