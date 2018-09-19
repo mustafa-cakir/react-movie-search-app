@@ -3,7 +3,7 @@ import './App.css';
 import $ from 'jquery';
 import MovieRow from "./components/MovieRow";
 import Loading from "./components/Loading";
-import MyHeader from "./components/myHeader";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 class App extends Component {
@@ -39,6 +39,10 @@ class App extends Component {
             } else {
                 content.push(<div className="fetch-alert nothing" key={1}>Nothing found...</div>)
             }
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }).fail((xhr) => {
             content.push(<div className="fetch-alert error" key={1}><strong>Error!</strong> Something seriously gone
                 wrong :( <p><br/><code><strong>{xhr.status || ""}</strong><br/>{xhr.responseText}</code></p></div>);
@@ -51,7 +55,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <MyHeader fetchAndRender={this.fetchAndRender}/>
+                <Navbar fetchAndRender={this.fetchAndRender}/>
                 <main className="main">
                     <div className="loadingAbstract d-none" ref={(element) => {
                         this.loadingAbstractEl = element;
